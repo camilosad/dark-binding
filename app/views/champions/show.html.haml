@@ -1,0 +1,41 @@
+- model_class = Champion
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%p
+  %strong= model_class.human_attribute_name(:riot_id) + ':'
+  %br
+  = @champion.riot_id
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
+  = @champion.name
+%p
+  %strong= model_class.human_attribute_name(:title) + ':'
+  %br
+  = @champion.title
+%p
+  %strong= model_class.human_attribute_name(:lore) + ':'
+  %br
+  = @champion.lore
+%p
+  %strong= model_class.human_attribute_name(:image) + ':'
+  %br
+  = @champion.image
+%p
+  %strong= model_class.human_attribute_name(:info) + ':'
+  %br
+  = @champion.info
+%p
+  %strong= model_class.human_attribute_name(:spells) + ':'
+  %br
+  = @champion.spells
+%p
+  %strong= model_class.human_attribute_name(:passive) + ':'
+  %br
+  = @champion.passive
+
+
+= link_to t('.back', :default => t("helpers.links.back")), champions_path, :class => 'btn btn-default'
+= link_to t('.edit', :default => t("helpers.links.edit")), edit_champion_path(@champion), :class => 'btn btn-default'
+= link_to t('.destroy', :default => t("helpers.links.destroy")), champion_path(@champion), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
