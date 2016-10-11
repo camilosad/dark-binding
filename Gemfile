@@ -67,7 +67,3 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'haml'
 gem 'haml-rails', '~> 0.9'
 gem 'twitter-bootstrap-rails'
-# gem 'simple_form'
-# gem 'cocoon'
-# gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
-# gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
