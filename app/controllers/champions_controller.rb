@@ -12,6 +12,20 @@ class ChampionsController < ApplicationController
   def show
   end
 
+  def refresh
+    @champions = Riot.get_champions(:image, :info, :lore, :spells, :passive)
+    Champion.destroy_all
+
+    @champions['data'].each do |champion, data|
+      Champion.create(riot_id: data['id'], name: data['name'], title: data['title'], lore: data['lore'],
+                      image: data['image'], info: data['info'], spells: data['spells'],
+                      passive: data['passive']
+                      )
+    end
+
+    redirect_to action: :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_champion

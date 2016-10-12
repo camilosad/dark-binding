@@ -1,13 +1,18 @@
 - model_class = Champion
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  .row
+    .col-sm-11
+      %h1=t '.title', default: model_class.model_name.human.pluralize.titleize
+    .col-sm-1
+      = link_to refresh_champions_path, class: 'btn btn-default' do
+        %i.fa.fa-refresh
 
 - @champions.each_slice(4) do |champion_group|
   .row
     - champion_group.each do |champion|
       .col-sm-6.col-md-4.col-lg-3
         .thumbnail
-          %img{:alt => champion.name, :src => "http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/Morgana.png"}/
+          %img{:alt => champion.name, :src => champion.image_url}/
           .caption.text-center
             %h3= champion.name
             %p= champion.info
