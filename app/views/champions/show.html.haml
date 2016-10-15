@@ -41,19 +41,20 @@
 %p
   .panel.panel-default
     .panel-heading
-      %strong= model_class.human_attribute_name(:recommended_items)
+      %strong= 'Essential Recommended Items'
     .panel-body
       - @champion.items.each do |item|
         .row
-          .col-md-4
+          .col-lg-2.col-md-2.col-sm-1
             %img{:alt => item.name, :src => item.image_url}
-          .col-md-9
-            %p
+          .col-lg-10.col-md-10.col-sm-11
+            %div
               %strong= item.name + ':'
               = item.description
-            %p
-              %strong= 'price: '
+            %div
+              %strong= 'Price: '
               = item.gold_total
+        %hr
 
 
 = link_to t('.back', :default => t("helpers.links.back")), champions_path, :class => 'btn btn-default'
