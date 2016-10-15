@@ -6,22 +6,45 @@ RSpec.describe Champion, type: :model do
     let(:champion) { build(:champion) }
 
     context "json fields" do
-      it "should have methods for image" do
-        expect(champion).to respond_to(:image_full)
-        expect(champion).to respond_to(:image_sprite)
+      it "#image_full" do
+        expect(champion.image_full).to eq "Morgana.png"
       end
 
-      it "should have methods for info" do
-        expect(champion).to respond_to(:info_attack)
-        expect(champion).to respond_to(:info_defense)
-        expect(champion).to respond_to(:info_magic)
-        expect(champion).to respond_to(:info_difficulty)
+      it "#image_sprite" do
+        expect(champion.image_sprite).to eq "champion2.png"
       end
 
-      it "should have methods for passive" do
-        expect(champion).to respond_to(:passive_name)
-        expect(champion).to respond_to(:passive_description)
+      it "#info_attack" do
+        expect(champion.info_attack).to eq 1
       end
+
+      it "#info_defense" do
+        expect(champion.info_defense).to eq 6
+      end
+
+      it "#info_defense" do
+        expect(champion.info_magic).to eq 8
+      end
+
+      it "#info_difficulty" do
+        expect(champion.info_difficulty).to eq 1
+      end
+
+      it "#passive_name" do
+        expect(champion.passive_name).to eq "Sifao da Alma"
+      end
+
+      it "#passive_description" do
+        expect(champion.passive_description).to eq "Morgana tem Vampirismo Mágico, curando-se sempre que causa dano com suas habilidades."
+      end
+
+      it "#spells_simplified" do
+        expect(champion.spells_simplified).to have_key("Ligação das Trevas")
+        expect(champion.spells_simplified).to have_key("Solo Atormentado")
+        expect(champion.spells_simplified).to have_key("Escudo Negro")
+        expect(champion.spells_simplified).to have_key("Grilhões da Alma")
+      end
+
     end
 
     it "#image_url" do

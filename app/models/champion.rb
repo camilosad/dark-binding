@@ -1,14 +1,9 @@
 class Champion < ApplicationRecord
-  extend HashMethods
 
   default_scope {order :name}
 
-  simple_hash_methods :image, :full, :sprite
-  simple_hash_methods :info, :attack, :defense, :magic, :difficulty
-  simple_hash_methods :passive, :name, :sanitizedDescription
-
   def image_url
-    "http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/#{image['full']}"
+    "http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/#{image_full}"
   end
 
   def image_full
