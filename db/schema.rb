@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011193842) do
+ActiveRecord::Schema.define(version: 20161015190516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "champions", force: :cascade do |t|
-    t.integer  "riot_id"
     t.string   "name"
     t.string   "title"
     t.text     "lore"
@@ -28,4 +27,24 @@ ActiveRecord::Schema.define(version: 20161011193842) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.json     "image"
+    t.json     "gold"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "recommended_items", force: :cascade do |t|
+    t.integer  "champion_id"
+    t.integer  "item_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["champion_id"], name: "index_recommended_items_on_champion_id", using: :btree
+    t.index ["item_id"], name: "index_recommended_items_on_item_id", using: :btree
+  end
+
+  add_foreign_key "recommended_items", "champions"
+  add_foreign_key "recommended_items", "items"
 end

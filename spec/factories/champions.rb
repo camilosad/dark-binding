@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :champion do
-    riot_id 1
     name "Morgana"
     title "The fallen angel"
     lore Faker::Lorem.sentence

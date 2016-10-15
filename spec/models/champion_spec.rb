@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Champion, type: :model do
 
+  describe "relationships" do
+    it {should have_many(:recommended_items)}
+    it {should have_many(:items).through(:recommended_items)}
+  end
+
   describe "instance_methods" do
     let(:champion) { build(:champion) }
 
