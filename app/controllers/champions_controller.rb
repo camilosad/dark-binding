@@ -13,13 +13,18 @@ class ChampionsController < ApplicationController
   end
 
   def refresh
-    champions = Riot.get_champions(:image, :info, :lore, :spells, :passive, :recommended)
-    refresh_champions(champions)
+    begin
+      champions = Riot.get_champions(:image, :info, :lore, :spells, :passive, :recommended)
+      refresh_champions(champions)
 
-    items = Riot.get_items(:image, :gold)
-    refresh_items(items)
+      items = Riot.get_items(:image, :gold)
+      refresh_items(items)
 
-    refresh_recommended_items(champions)
+      refresh_recommended_items(champions)
+      flash[:info] = "Dark Binding is up to date."
+    rescue Exception => e
+      flash[:warning] = "Something went wrong."
+    end
 
     redirect_to action: :index
   end
