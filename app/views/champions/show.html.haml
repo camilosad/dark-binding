@@ -28,7 +28,7 @@
       - @champion.spells_simplified.each do |key, value|
         %p
           %strong= key + ':'
-          %span= value
+          = value
 
 %p
   .panel.panel-default
@@ -36,8 +36,24 @@
       %strong= model_class.human_attribute_name(:passive)
     .panel-body
       %strong= @champion.passive_name + ':'
-      %span= @champion.passive_description
+      = @champion.passive_description
 
+%p
+  .panel.panel-default
+    .panel-heading
+      %strong= model_class.human_attribute_name(:recommended_items)
+    .panel-body
+      - @champion.items.each do |item|
+        .row
+          .col-md-4
+            %img{:alt => item.name, :src => item.image_url}
+          .col-md-9
+            %p
+              %strong= item.name + ':'
+              = item.description
+            %p
+              %strong= 'price: '
+              = item.gold_total
 
 
 = link_to t('.back', :default => t("helpers.links.back")), champions_path, :class => 'btn btn-default'
