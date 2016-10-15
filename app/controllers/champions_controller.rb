@@ -13,14 +13,13 @@ class ChampionsController < ApplicationController
   end
 
   def refresh
-    # update_champions
-    # champions = Riot.get_champions(:image, :info, :lore, :spells, :passive, :recommended)
-    # refresh_champions(champions)
-    # update_items
+    champions = Riot.get_champions(:image, :info, :lore, :spells, :passive, :recommended)
+    refresh_champions(champions)
+
     items = Riot.get_items(:image, :gold)
     refresh_items(items)
-    # update recommended_items
-    # refresh_recommended_items(champions)
+
+    refresh_recommended_items(champions)
 
     redirect_to action: :index
   end
@@ -41,17 +40,17 @@ class ChampionsController < ApplicationController
       Item.create(id: data['id'], name: data['name'], description: data['plaintext'],
         image: data['image'], gold: data['gold'])
     end
-    binding.pry
   end
 
   def refresh_recommended_items(champions_response)
+    # in order to make things simpler, we will only get ESSENTIAL recommended items from SUMMONER'S RIFT map
     RecommendedItem.destroy_all
     champions_response['data'].each do |item, champion_data|
       champion_data['recommended'].each do |recommended_hash|
-        # only want recommended items for classic summoner's rift
+        # skip the other maps
         next unless recommended_hash['map'] == "SR" and recommended_hash['mode'] == "CLASSIC"
         recommended_hash['blocks'].each do |block|
-          # only want the essential items
+          # skip the other recommended item types
           next unless block['type'] == 'essential'
           block['items'].each do |item|
             RecommendedItem.create(champion_id: champion_data['id'], item_id: item['id'])
