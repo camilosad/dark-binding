@@ -15,6 +15,6 @@
           %img{:alt => champion.name, :src => champion.image_url}/
           .caption.text-center
             %h3= champion.name
-            %p= champion.info
+            %p= champion.title
             %p
               = link_to "See details", champion_path(champion), class: 'btn btn-default'
