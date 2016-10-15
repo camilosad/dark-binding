@@ -22,21 +22,9 @@ module Riot
     end
   end
 
-  def self.get_champion(id, *data)
-    champion_path = "/api/lol/static-data/br/v1.2/champion/#{id}?"
-    champion_path.concat("champData=#{set_data(data)}") if data.any?
-    get_from_api(champion_path)
-  end
-
-  def self.get_item(id, *data)
-    item_path = "/api/lol/static-data/br/v1.2/item/#{id}?"
-    item_path.concat("itemData=#{set_data(data)}") if data.any?
-    get_from_api(item_path)
-  end
-
   def self.get_items(*data)
     items_path = "/api/lol/static-data/br/v1.2/item?"
-    items_path.concat("itemData=#{set_data(data)}") if data.any?
+    items_path.concat("itemListData=#{set_data(data)}") if data.any?
     get_from_api(items_path)
   end
 
