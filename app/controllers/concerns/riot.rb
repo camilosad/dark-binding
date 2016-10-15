@@ -1,7 +1,7 @@
 module Riot
 
   # TODO: set key as environment variable
-  API_KEY = 'RGAPI-575ddb6d-11dd-42b3-aa98-b82441c997b2'
+  API_KEY = Rails.application.secrets.riot_api
 
   def self.get_from_api(path)
     full_path = "https://global.api.pvp.net" + path + "&api_key=#{API_KEY}"
