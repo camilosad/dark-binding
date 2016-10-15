@@ -13,10 +13,6 @@ class Champion < ApplicationRecord
     image['full']
   end
 
-  def image_sprite
-    image['sprite']
-  end
-
   def info_attack
     info['attack']
   end
@@ -47,13 +43,5 @@ class Champion < ApplicationRecord
       h.store(spell["name"], spell["sanitizedDescription"])
     end
     h
-  end
-
-  def passive_name
-    passive["name"]
-  end
-
-  def passive_description
-    passive["sanitizedDescription"]
   end
 end
