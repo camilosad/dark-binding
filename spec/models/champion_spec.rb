@@ -15,10 +15,6 @@ RSpec.describe Champion, type: :model do
         expect(champion.image_full).to eq "Morgana.png"
       end
 
-      it "#image_sprite" do
-        expect(champion.image_sprite).to eq "champion2.png"
-      end
-
       it "#info_attack" do
         expect(champion.info_attack).to eq 1
       end

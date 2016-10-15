@@ -50,7 +50,9 @@ RSpec.describe ChampionsController, type: :controller do
     it "reloads all champion information from Riot" do
       get :refresh
       expect(response).to redirect_to root_path
-      expect(Champion.first.updated_at.utc).to be_within(10.seconds).of Time.now
+      expect(Champion.first.updated_at.utc).to be_within(1.minute).of Time.now
+      expect(Item.first.updated_at.utc).to be_within(1.minute).of Time.now
+      expect(RecommendedItem.first.updated_at.utc).to be_within(1.minute).of Time.now
     end
   end
 
